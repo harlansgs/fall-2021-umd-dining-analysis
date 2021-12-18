@@ -1,12 +1,8 @@
-re
 bs4
 numpy
 pandas
 sklearn
-sqlite3
-difflib
 requests
 matplotlib
 ipywidgets
 nbinteract
-IPython.display
