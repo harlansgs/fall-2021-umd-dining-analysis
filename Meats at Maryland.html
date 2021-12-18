@@ -13119,7 +13119,7 @@ div#notebook {
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><center><h1>Creating a New UMD Dining Hall Nutrition Database and Classifying Vegan Dishes</h1><h4>Brooke Rice, Mitchell Smith</h4></center><hr></p>
+<p><center><h1>Creating a New UMD Dining Hall Nutrition Database and Classifying Vegan Dishes</h1><h4>Laura Brooke Rice, Mitchell Smith</h4></center><hr></p>
 <p>The University of Maryland (UMD) dining halls are famous with students for their occasionally questionable array of sustenance. Trying to find nutrition information for any given meal is also notoriously difficult due to the horrendously arranged online campus dining <a href="https://nutrition.umd.edu/">database</a>. That's why we're making a walkthough of creating an easily searchable dining hall nutrition database and showing how this data can be used to train an is-vegan food classifier. This will be an end-to-end tutorial covering all steps from data acquisition to generalization error estimation. Our key learning objectives are thus as follows...</p>
 <ol>
 <li><a href="#scraping">(web scraping)</a> get necessary nutrition facts from the UMD dining halls website</li>
@@ -13127,7 +13127,8 @@ div#notebook {
 <li><a href="#database">(data visualization)</a> create a read-only web database for easily querying nutrition information</li>
 <li><a href="#eda">(exploratory data analysis)</a> examine nutritional contents and compare with health guidelines</li>
 <li><a href="#ml">(machine learning)</a> train an "is vegan" classifier for predicting whether a given dish is vegan based off its nutrition facts</li>
-<li><a href="#validation">(concluding analysis)</a> apply the final classifier to predict generalization loss and draw conclusions</li>
+<li><a href="#validation">(analysis)</a> apply the final classifier to predict generalization loss</li>
+<li><a href="#conclusion">(conclusion)</a> key takeaways</li>
 </ol>
 <p>We feel this project is relevant in that we are producing a more accessible and directly useful UMD nutrition search engine while demonstrating the end to end data lifecycle (from data collection to machine learning analysis).</p>
 <h4 id="Aside:-dependencies">Aside: dependencies<a class="anchor-link" href="#Aside:-dependencies">&#182;</a></h4><p>For the sake of this project, we will be using the <a href="https://docs.python-requests.org/en/latest/">requests library</a>, <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>, and <a href="https://pandas.pydata.org/docs/">Pandas</a> to scrape and store data. We will create plots using <a href="https://matplotlib.org/">matplotlib</a> and <a href="https://github.com/xflr6/graphviz">graphviz</a>. A searchable UI will be prepared using <a href="https://ipywidgets.readthedocs.io/en/latest/">ipywidgets</a>, and machine learning will be performed using <a href="https://scikit-learn.org/stable/">scikit-learn</a>. Nutrition data will be sourced from <a href="https://nutrition.umd.edu/">https://nutrition.umd.edu/</a>, and our generalization estimation set will come from <a href="https://www.kaggle.com/trolukovich/nutritional-values-for-common-foods-and-products">Kaggle</a>.</p>
@@ -13984,7 +13985,7 @@ NOTE: we chose to load pre-scraped data at the beginning of this section for the
 </pre></div>
 <p><a id="database"></a></p>
 <h1 id="Data-visualization:-creating-a-read-only-web-database">Data visualization: creating a read-only web database<a class="anchor-link" href="#Data-visualization:-creating-a-read-only-web-database">&#182;</a></h1><p>At this point in the process, we have already acquired and cleaned the desired nutrition data. With the backing dataset more or less complete, creating a database becomes trivial. For our purposes, we only want the ability to read nutrition data. Only UMD dining hall workers should be able to create, update, or delete menu items. That said, to create a read-only interface for our nutrition data, we would typically recommend <a href="https://bamboolib.8080labs.com/">bamboolib</a>. It's the perfect tool for this sort of thing, yet we will be creating our own interface with <a href="https://ipywidgets.readthedocs.io/en/latest/">ipywidgets</a> for ease of HTML hosting.</p>
-<p>Libraries aside, we want our new nutrition database to function just like UMD's: we should be able to query for whatever food we desire (by name) and get a quick nutrition facts sheet with allergens listed. To that end, we will need to define a simple string search for finding close food matches (ie. "fwench" should find "French Toast") as well as a label generation method (for outputting nutrition information). We then want to design our interface to make use of these functions for an easily searchable nutrition dataset.</p>
+<p>Libraries aside, we want our new nutrition database to function just like UMD's: we should be able to query for whatever food we desire (by name) and get a quick nutrition facts sheet with allergens listed. To that end, we will need to define a simple string search for finding matching foods (ie. "fwench" should find "French Toast") as well as a label generation method (for outputting nutrition information). We then want to design our interface to make use of these functions for an easily searchable nutrition dataset.</p>
 
 </div>
 </div>
@@ -15164,7 +15165,6 @@ weighted avg       0.95      0.94      0.94       102
 
 <span class="c1"># apply 10-fold cross validation!</span>
 <span class="n">rforestScores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf1</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rforestScores</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average accuracy score from cross-validation: &quot;</span><span class="p">,</span> <span class="n">rforestScores</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 
 <span class="c1"># and get accuracy from holdout validation</span>
@@ -15186,9 +15186,7 @@ weighted avg       0.95      0.94      0.94       102
     
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[0.94117647 0.91176471 0.97058824 0.91176471 0.94117647 0.91176471
- 0.94117647 0.96969697 1.         0.93939394]
-Average accuracy score from cross-validation:  0.9438502673796793
+<pre>Average accuracy score from cross-validation:  0.9438502673796793
 Holdout validation accuracy:  0.9411764705882353
 </pre>
 </div>
@@ -15207,7 +15205,8 @@ Holdout validation accuracy:  0.9411764705882353
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Finding-a-generalization-test-data-set-and-cleaning-it">Finding a generalization test data set and cleaning it<a class="anchor-link" href="#Finding-a-generalization-test-data-set-and-cleaning-it">&#182;</a></h2>
+<p><a id="validation"></a></p>
+<h1 id="Analysis:-finding-a-generalization-test-set-and-cleaning-it">Analysis: finding a generalization test set and cleaning it<a class="anchor-link" href="#Analysis:-finding-a-generalization-test-set-and-cleaning-it">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -15892,23 +15891,17 @@ Holdout validation accuracy:  0.9411764705882353
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="conclusion"></a></p>
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><p>We have seen that creating an "is vegan" classifier using UMD dining hall nutrition facts works pretty well. Although the nutritional content of UMD dining hall food may vary from those foods that are not mass-produced, it still generalizes well. We minimized loss to the best of our ability, with the only errors in our classifier being for foods that contained honey. Honey is difficult to detect as a non-vegan ingredient because it only affects sugar content whereas most non-vegan foods have higher levels of sodium, cholesterol, protein, fat, and calories than vegan foods. It would be nearly impossible to train a 100% accurate vegan classifier without reading every ingredient for each food, and given our lack of perfect accuracy we would like to issue a word of caution for anyone using our classifier to choose their vegan meals. However, the model is likely safe for filtering out the majority of non-vegan foods, as we saw that no vegan food was accidentally labeled as non-vegan.</p>
+<p>This project also sought to improve access to the UMD dining hall nutrition database. You no longer need to click between 10 different pages to find the nutrition facts for a particular food. The foods are also no longer separated by meal type, so it is easier to see all of the relevant data on one page. Vital allergen information for each food has also been maintained in our dataframe, and it would not be difficult to extend the present scraping to include information about whether a food is gluten-free, halal, etc.</p>
+<p>It is also much easier to calculate one's daily nutritional intake with all of the data being provided in one place. It would also be easy to build classifiers for other diets in the future like an "is Keto" or "is low-carb" model now that the data is more accesible. Adding new foods to the UMD dining hall database is also much easier using a central dataframe in place of the dining hall's questionable web interface. It would be great to see UMD use a similar approach to nutrition data management.</p>
+<p>Many universities use "NetNutrition" to assist in nutritional value calculations for students, and it would be nice to have a similar mechanism for tracking nutrition facts (as this is a very cumbersome process using the existing UMD dining hall web database). With such a highly-ranked computer science program, we would hope to see more user-friendly databases in use. Even though nutritional values would still need to be calculated manually, our database makes it much easier to view the facts for each food and does not require navigating through several pages for each search.</p>
 
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
-
-  </div>
+</div>
 
 
 
