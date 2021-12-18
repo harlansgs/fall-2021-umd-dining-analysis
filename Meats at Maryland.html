@@ -14087,7 +14087,6 @@ NOTE: we chose to load pre-scraped data at the beginning of this section for the
             
 <span class="c1"># link search button to click event</span>
 <span class="n">searchButton</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">searchButton</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
@@ -14098,20 +14097,6 @@ NOTE: we chose to load pre-scraped data at the beginning of this section for the
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
 
 <div class="output_area">
 
@@ -15561,7 +15546,7 @@ Holdout validation accuracy:  0.9411764705882353
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Generalization-error-estimation">Generalization error estimation<a class="anchor-link" href="#Generalization-error-estimation">&#182;</a></h2><p>Now that we have a test dataset ready to go, we can start seeing how well our model does (or does not) generalize! To do so, we should call our old UMD-trained model on the external dataset. After recording our model's predictions, we can compare them with our manual vegan classifications from earlier. We can see how accurate our model turned out to be in terms of which labels did not line up  (between the prediction and manual vegan classification columns)...</p>
+<h2 id="Generalization-error-estimation">Generalization error estimation<a class="anchor-link" href="#Generalization-error-estimation">&#182;</a></h2><p>Now that we have a test dataset ready to go, we can start seeing how well our model does (or does not) generalize! To do so, we should call our old UMD-trained model on the external dataset. After recording our model's predictions, we can compare them with our manual vegan classifications from earlier. We can then see how accurate our model turned out to be in terms of which labels did not line up (between the predictions and manual vegan classification columns)...</p>
 
 </div>
 </div>
@@ -15742,7 +15727,7 @@ Holdout validation accuracy:  0.9411764705882353
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After looking at for mismatch between the is-vegan prediction and the labels we had created, we can see that there is some uncertainty with a couple foods. Specifically, there is no way to know whether or not the infant formulas, chocolate milk mix, margarine, or chocolate syrup are vegan. For this reason, we have decided to drop them from our output.</p>
+<p>After looking for mismatches between the is-vegan predictions and the labels we had created, we can see that there is some uncertainty for several foods. There is no way to know whether or not the infant formulas, chocolate milk mix, margarine, or chocolate syrup are vegan. For this reason, we have decided to drop them from our output.</p>
 
 </div>
 </div>
