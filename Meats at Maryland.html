@@ -14004,6 +14004,11 @@ NOTE: we chose to load pre-scraped data at the beginning of this section for the
 <span class="c1"># import difflib for finding close string matches</span>
 <span class="kn">import</span> <span class="nn">difflib</span>
 
+<span class="c1"># redefine units so nbinteract can reference them on the webpage</span>
+<span class="n">units</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> 
+                         <span class="s1">&#39;milligrams&#39;</span><span class="p">,</span> <span class="s1">&#39;milligrams&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;kcal&#39;</span><span class="p">,</span> <span class="s1">&#39;grams&#39;</span><span class="p">,</span> <span class="s1">&#39;milligrams&#39;</span><span class="p">,</span> 
+                         <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">]))</span>
+
 <span class="c1">### QUERY LOGIC ###</span>
 <span class="c1"># create a simple search function (returns indices of similarly named foods)</span>
 <span class="k">def</span> <span class="nf">searchDataframe</span><span class="p">(</span><span class="n">foodName</span><span class="p">):</span>
